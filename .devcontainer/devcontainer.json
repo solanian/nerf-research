@@ -1,0 +1,39 @@
+{
+	"name": "nerf-pytorch",
+	"build": {
+		"dockerfile": "Dockerfile",
+		"args": {
+			"USERNAME": "${localEnv:USER}",
+		}
+	},
+	"containerEnv": {
+		"DISPLAY": "",
+		"XAUTHORITY": "${localEnv:XAUTHORITY}",
+		"NVIDIA_VISIBLE_DEVICES": "all",
+		"NVIDIA_DRIVER_CAPABILITIES": "all",
+	},
+	"mounts": [
+		"source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind,consistency=cached",
+		"source=/data,target=/data,type=bind", // for local data mount
+	],
+	"runArgs": [
+		"--gpus=all",
+		"--network=host",
+		"--ipc=host",
+		"--pid=host",
+        "--uts=host",
+		"--name", "nerf-pytorch-${localEnv:USER}"
+	],
+	"settings": {
+		"editor.detectIndentation": false,
+		"editor.insertSpaces": false,
+	},
+	"extensions": [
+		"ms-python.python",
+		"kevinrose.vsc-python-indent",
+		"ms-python.pylint",
+	],
+	"workspaceMount": "source=${localWorkspaceFolder},target=/workspace/nerf-pytorch,type=bind,consistency=cached",
+	"workspaceFolder": "/workspace/nerf-pytorch",
+	"onCreateCommand": "pip install -r /workspace/nerf-pytorch/requirements.txt"
+}
