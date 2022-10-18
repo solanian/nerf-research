@@ -30,8 +30,7 @@
 	},
 	"extensions": [
 		"ms-python.python",
-		"kevinrose.vsc-python-indent",
-		"ms-python.pylint",
+		"oderwat.indent-rainbow",
 	],
 	"workspaceMount": "source=${localWorkspaceFolder},target=/workspace/nerf-pytorch,type=bind,consistency=cached",
 	"workspaceFolder": "/workspace/nerf-pytorch",

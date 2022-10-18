@@ -21,13 +21,11 @@ RUN apt-get update && \
 	bash-completion \
 	htop \
 	cmake \
-    sudo
-
-# for opencv
-RUN apt=get install	libgl1
+    sudo \
+    libgl1
 
 # Install nvtop
-RUN git clone https://github.com/Syllo/nvtop.git && \
+RUN git clone -b 2.0.4 https://github.com/Syllo/nvtop.git && \
     mkdir -p nvtop/build && cd nvtop/build && \
     cmake .. && \
     make && \
